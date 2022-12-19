@@ -1,0 +1,10 @@
+#web_bg {
+  /* 背景图像的地址（url括号里）  */
+  background: url(https://cdn.jsdelivr.net/gh/luoyunchensy/pic_img@main/img/9bfc9c93766e23c2003ecb6e97740202--567264732.jpg);
+  /* 背景图像不重复 */
+  background-repeat: no-repeat;
+  /* 背景图像大小 */
+  background-size: cover;
+}
+
+  
