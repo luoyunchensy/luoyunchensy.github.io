@@ -139,10 +139,10 @@ div#archive {
 
 /*毛玻璃*/
 /*所有页面实现毛玻璃特效*/
-/* #aside-content{
+#aside-content{
   background: rgba(255,255,255,0);
 }
-
+/*
 #aside-content > .card-widget:first-child {
   background: rgba(255,255,255,0.5);
   backdrop-filter: blur(10px);
@@ -172,6 +172,103 @@ div#archive {
 #sidebar #menu-mask {
   background: rgba(255,255,255,0);
 } */ 
+
+
+/*宽屏适配*/
+.layout{
+  max-width:1400px;
+}
+.aside-content{
+  max-width:312px;
+  min-width:300px;
+}
+.recent-posts{
+width:auto!important;
+}
+@media screen and (max-width: 900px){
+  .aside-content{
+      max-width:none!important;
+  }
+}
+/*分页适配，分页隐藏个人页*/
+#archive,#page,#category,#tag{
+  width:100%;
+}
+.page:not(.page.home) .aside-content{
+  display: none;
+}
+
+
+/* 文章目录 */
+#aside-content #card-toc .toc-content .toc-link.active {
+  line-height: 1.2;
+  border-radius: 12px;
+  border-left-color: var(--heo-hovertext);
+  background-color: var(--heo-card-bg);
+  color: var(--heo-lighttext);
+  font-weight: bold;
+  font-size: 20px;
+}
+
+[data-theme=dark].toc .toc-item.active .toc-link .toc-text {
+  color: var(--heo-white);
+}
+
+#aside-content #card-toc .toc-content .toc-item.active .toc-link {
+  opacity: 1;
+  border-radius: 8px;
+}
+
+#aside-content #card-toc .toc-content .toc-link {
+  line-height: 1.2;
+  padding: 8px;
+  border-left: 0px solid transparent;
+  border-radius: 12px;
+  color: var(--heo-secondtext);
+  cursor: default;
+}
+
+#aside-content #card-toc .toc-content .toc-link:not(.active) span {
+  opacity: 0.6;
+  cursor: pointer;
+  filter: blur(1px);
+  transition: 0.3s;
+}
+
+#aside-content #card-toc:hover .toc-content .toc-link:not(.active) span {
+  filter: blur(0px);
+  opacity: 1;
+}
+
+#aside-content #card-toc .toc-content .toc-link:not(.active) span:hover {
+  color: var(--heo-lighttext);
+}
+
+/* 目录卡片边距 */
+#card-toc {
+  padding: 0.5rem 0.5rem !important;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
