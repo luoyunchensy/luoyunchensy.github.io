@@ -1,6 +1,6 @@
 function reward(){
     Swal.fire({
-      title: '<strong>您正在为 <u>Peach</u> 充电</strong>',
+      title: '<strong>您正在为 <u>Dreamyou</u> 充电</strong>',
       html: '<b>请选择您的付款方式</b>',
       icon: 'info',
       showCancelButton: true,

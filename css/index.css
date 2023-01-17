@@ -5886,6 +5886,8 @@ blockquote.pullquote.right {
     transform: rotate(-10deg);
   }
   .author-content-item.myphoto {
+    background: url(https://s2.loli.net/2023/01/17/ZcvErQAsVhb7dx1.webp) no-repeat center;
+    background-size: 160%;
     height: 60%;
     min-height: 240px;
     position: relative;
@@ -5894,8 +5896,14 @@ blockquote.pullquote.right {
     display: flex;
     align-items: center;
     justify-content: center;
+    transition: 1s ease-in-out;
+
   }
-  .author-content-item.myphoto img {
+  [data-theme="dark"] .author-content-item.myphoto {
+    background: url(https://s2.loli.net/2023/01/17/fIRJF4op6zha9Q7.webp) no-repeat center;
+    background-size: 160%;
+  }
+  /* .author-content-item.myphoto img {
     position: absolute;
     min-width: 100%;
     object-fit: cover;
@@ -5905,7 +5913,7 @@ blockquote.pullquote.right {
   }
   .author-content-item.myphoto:hover img {
     transform: scale(1.1);
-  }
+  } */
   .author-content-item:hover .card-background-icon {
     transform: rotate(20deg);
   }
@@ -5926,6 +5934,7 @@ blockquote.pullquote.right {
     background-size: 100%;
     transition: 1s ease-in-out;
   }
+  
   [data-theme="dark"] .author-content-item.map {
     background: url(https://s2.loli.net/2023/01/16/O4lMBA5ZnrdKEcW.webp) no-repeat center;
     background-size: 100%;
@@ -6014,6 +6023,7 @@ blockquote.pullquote.right {
     right: 2rem;
     top: 2rem;
   }
+
   .tip-button {
     border: 0;
     border-radius: 2.25rem;
@@ -6250,9 +6260,9 @@ blockquote.pullquote.right {
     height: 18px;
     margin-right: 0.5rem;
   }
-  .icon-pos-mid {
+  /* .icon-pos-mid {
     background: url(https://img02.anzhiy.cn/adminuploads/1/2022/09/25/632fb9cecfc8c.png);
-  }
+  } */
   .author-content-item.game-yuanshen::after {
     box-shadow: 0 -69px 203px 11px #575d8b inset;
     position: absolute;
@@ -6762,7 +6772,7 @@ blockquote.pullquote.right {
     border-color: transparent;
     border-style: solid;
     border-width: 10px;
-    border-top: 10px solid #fff;
+    border-top: 10px solid #FBE47E;
     border-radius: 4px;
     transform: rotate(-55deg);
   }
@@ -6776,7 +6786,7 @@ blockquote.pullquote.right {
     border-color: transparent;
     border-style: solid;
     border-width: 10px;
-    border-top: 10px solid #fff;
+    border-top: 10px solid #FBE47E;
     border-radius: 4px;
     content: "";
     transform: rotate(180deg);
@@ -6784,7 +6794,7 @@ blockquote.pullquote.right {
 
   .reward #TA {
     float: right;
-    color: #fff;
+    color: #4B4948;
     font-size: 15px;
     line-height: 50px;
   }
