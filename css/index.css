@@ -1318,7 +1318,7 @@ input::placeholder {
   z-index: -999;
   width: 100%;
   height: 100%;
-  background: url(/img/Norhtern_Lights.webp);
+  background: url(/img/background.webp);
   background-attachment: local;
   background-position: center;
   background-size: cover;
@@ -1393,7 +1393,7 @@ table td {
   vertical-align: middle;
 }
 *::selection {
-  background: #5c779c;
+  background: #ccc;
   color: #f7f7f7;
 }
 button {
@@ -2120,6 +2120,16 @@ figure.highlight pre .javascript .function {
     width: 100% !important;
   }
 }
+@media screen and (min-width: 900px) {
+  .layout > div:first-child {
+    -webkit-box-ordinal-group: 2;
+    -moz-box-ordinal-group: 2;
+    -o-box-ordinal-group: 2;
+    -ms-flex-order: 2;
+    -webkit-order: 2;
+    order: 2;
+  }
+}
 .layout.hide-aside {
   max-width: 1000px;
 }
@@ -2438,7 +2448,7 @@ h1.page-title + .tag-cloud-list {
 }
 @media screen and (min-width: 900px) {
   #aside-content {
-    padding-left: 15px;
+    padding-right: 15px;
   }
 }
 @media screen and (max-width: 900px) {
