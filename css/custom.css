@@ -191,7 +191,7 @@ width:auto!important;
   }
 }
 /*分页适配，分页隐藏个人页*/
-#archive,#page,#category,#tag{
+#archive,#page,#category,#tag,#about{
   width:100%;
 }
 .page:not(.page.home) .aside-content{
