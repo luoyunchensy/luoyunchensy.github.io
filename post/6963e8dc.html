@@ -1,0 +1,384 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>初识go语言day1 | dreamyou</title><meta name="author" content="luoyunchen"><meta name="copyright" content="luoyunchen"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#D45254"><meta name="referrer" content="no-referrer"><meta name="description" content="字跳的课真的好快啊，今天已经在讲进阶内容了，而我这个小菜鸟还得啃啃基础语法，今天继续更。。   数组 定义：由若干相同类型的元素组成的序列 数组的长度是固定的，声明后无法改变 数组的长度是数组类型的一部分，eg：元素类型相同但是长度不同的两个数组是不同类型的 需要严格控制程序所使用内存时，数组十分有用，因为其长度固定，避免了内存二次分配操作  示例12345678910111213141516">
+<meta property="og:type" content="article">
+<meta property="og:title" content="初识go语言day1">
+<meta property="og:url" content="https://www.dreamyou.site/post/6963e8dc.html">
+<meta property="og:site_name" content="dreamyou">
+<meta property="og:description" content="字跳的课真的好快啊，今天已经在讲进阶内容了，而我这个小菜鸟还得啃啃基础语法，今天继续更。。   数组 定义：由若干相同类型的元素组成的序列 数组的长度是固定的，声明后无法改变 数组的长度是数组类型的一部分，eg：元素类型相同但是长度不同的两个数组是不同类型的 需要严格控制程序所使用内存时，数组十分有用，因为其长度固定，避免了内存二次分配操作  示例12345678910111213141516">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://s2.loli.net/2023/02/08/7D1z5APxObTu8Ro.png">
+<meta property="article:published_time" content="2023-01-17T14:30:30.000Z">
+<meta property="article:modified_time" content="2023-01-17T14:37:08.000Z">
+<meta property="article:author" content="luoyunchen">
+<meta property="article:tag" content="go语言">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://s2.loli.net/2023/02/08/7D1z5APxObTu8Ro.png"><link rel="shortcut icon" href="/img/favicon.webp"><link rel="canonical" href="https://www.dreamyou.site/post/6963e8dc"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":450},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '天',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '初识go语言day1',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2023-01-17 22:37:08'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#D45254')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><link rel="stylesheet" href="/css/custom.css" media="defer" onload="this.media='all'"><link rel="apple-touch-icon" href="/img/miao-4.png"><meta name="apple-mobile-web-app-title" content="Dreamyou-luoyunchen的博客"><link rel="bookmark" href="/img/miao-4.png"><link rel="apple-touch-icon-precomposed" sizes="180x180" href="/img/miao-4.png" ><link rel="stylesheet" href="/css/custom.css"  media="defer" onload="this.media='all'"><link rel="stylesheet" href="/css/custom.css"><link rel="stylesheet" href="/css/copyright.css"><script charset="UTF-8" id="LA_COLLECT" src="//sdk.51.la/js-sdk-pro.min.js"></script><script src="https://sdk.51.la/perf/js-sdk-perf.min.js" crossorigin="anonymous"></script><script> LA.init({id:"JwUfzBHSxRFNaKsF",ck:"JwUfzBHSxRFNaKsF"})</script><script>new LingQue.Monitor().init({id:"JwUfzBHSxRFNaKsF",sendSuspicious:true});</script><script type="text/javascript" src ="/js/reward.js" ></script><script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.6.16/dist/sweetalert2.all.min.js"></script><link rel="stylesheet" href="/css/essay_page/essay_page.css"><link rel="stylesheet" href="/css/essay_page/home_essay_bar.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/js-heo@1.0.11/bb/showbb_in_index.css"><meta name="theme-color" content="#1972F8" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#1C4D98" media="(prefers-color-scheme: dark)">                                                                                                                <!-- hexo injector head_end start --><link rel="stylesheet" href="https://npm.elemecdn.com/hexo-butterfly-tag-plugins-plus@latest/lib/assets/font-awesome-animation.min.css" media="defer" onload="this.media='all'"><link rel="stylesheet" href="https://npm.elemecdn.com/hexo-butterfly-tag-plugins-plus@latest/lib/tag_plugins.css" media="defer" onload="this.media='all'"><script src="https://npm.elemecdn.com/hexo-butterfly-tag-plugins-plus@latest/lib/assets/carousel-touch.js"></script><!-- hexo injector head_end end --><meta name="generator" content="Hexo 6.3.0"></head><body><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/assets/head.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">7</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">8</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">4</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-birthday-cake"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-book"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/essay/"><i class="fa-fw fas fa-message"></i><span> 哔哔</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-cubes"></i><span> 更多</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/camera/"><i class="fa-fw fas fa-camera"></i><span> 照片</span></a></li><li><a class="site-page child" href="/game/"><i class="fa-fw fas fa-gamepad"></i><span> 游戏</span></a></li><li><a class="site-page child" href="/website/"><i class="fa-fw fas fa-laptop"></i><span> 工具</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于我</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="not-top-img" id="page-header"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">dreamyou</a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-birthday-cake"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-book"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/essay/"><i class="fa-fw fas fa-message"></i><span> 哔哔</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-cubes"></i><span> 更多</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/camera/"><i class="fa-fw fas fa-camera"></i><span> 照片</span></a></li><li><a class="site-page child" href="/game/"><i class="fa-fw fas fa-gamepad"></i><span> 游戏</span></a></li><li><a class="site-page child" href="/website/"><i class="fa-fw fas fa-laptop"></i><span> 工具</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于我</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav></header><main class="layout" id="content-inner"><div id="post"><div id="post-info"><h1 class="post-title">初识go语言day1</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2023-01-17T14:30:30.000Z" title="发表于 2023-01-17 22:30:30">2023-01-17</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2023-01-17T14:37:08.000Z" title="更新于 2023-01-17 22:37:08">2023-01-17</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E5%90%8E%E7%AB%AF%E5%9F%BA%E7%A1%80/">后端基础</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">2.3k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>10分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="初识go语言day1"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div><article class="post-content" id="article-container"><hr>
+<blockquote>
+<p>字跳的课真的好快啊，今天已经在讲进阶内容了，而我这个小菜鸟还得啃啃基础语法，今天继续更。。</p>
+</blockquote>
+<hr>
+<h2 id="数组"><a href="#数组" class="headerlink" title="数组"></a>数组</h2><ul>
+<li>定义：由若干相同类型的元素组成的序列</li>
+<li>数组的长度是固定的，声明后无法改变</li>
+<li>数组的长度是数组类型的一部分，eg：元素类型相同但是长度不同的两个数组是不同类型的</li>
+<li>需要严格控制程序所使用内存时，数组十分有用，因为其长度固定，避免了内存二次分配操作</li>
+</ul>
+<h3 id="示例"><a href="#示例" class="headerlink" title="示例"></a>示例</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br></pre></td><td class="code"><pre><span class="line">package main</span><br><span class="line"></span><br><span class="line">import &quot;fmt&quot;</span><br><span class="line"></span><br><span class="line">func main() &#123;</span><br><span class="line">	// 定义长度为 5 的数组</span><br><span class="line">	var arr1 [5]int</span><br><span class="line">	for i := 0; i &lt; 5; i++ &#123;</span><br><span class="line">		arr1[i] = i</span><br><span class="line">	&#125;</span><br><span class="line">	printHelper(&quot;arr1&quot;, arr1)</span><br><span class="line"></span><br><span class="line">	// 以下赋值会报类型不匹配错误，因为数组长度是数组类型的一部分</span><br><span class="line">	// arr1 = [3]int&#123;1, 2, 3&#125;</span><br><span class="line">	arr1 = [5]int&#123;2, 3, 4, 5, 6&#125; // 长度和元素类型都相同，可以正确赋值</span><br><span class="line"></span><br><span class="line">	// 简写模式，在定义的同时给出了赋值</span><br><span class="line">	arr2 := [5]int&#123;0, 1, 2, 3, 4&#125;</span><br><span class="line">	printHelper(&quot;arr2&quot;, arr2)</span><br><span class="line"></span><br><span class="line">	// 数组元素类型相同并且数组长度相等的情况下，数组可以进行比较</span><br><span class="line">	fmt.Println(arr1 == arr2)</span><br><span class="line"></span><br><span class="line">	// 也可以不显式定义数组长度，由编译器完成长度计算</span><br><span class="line">	var arr3 = [...]int&#123;0, 1, 2, 3, 4&#125;</span><br><span class="line">	printHelper(&quot;arr3&quot;, arr3)</span><br><span class="line"></span><br><span class="line">	// 定义前四个元素为默认值 0，最后一个元素为 -1</span><br><span class="line">	var arr4 = [...]int&#123;4: -1&#125;</span><br><span class="line">	printHelper(&quot;arr4&quot;, arr4)</span><br><span class="line"></span><br><span class="line">	// 多维数组</span><br><span class="line">	var twoD [2][3]int</span><br><span class="line">	for i := 0; i &lt; 2; i++ &#123;</span><br><span class="line">		for j := 0; j &lt; 3; j++ &#123;</span><br><span class="line">			twoD[i][j] = i + j</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	fmt.Println(&quot;twoD: &quot;, twoD)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">func printHelper(name string, arr [5]int) &#123;</span><br><span class="line">	for i := 0; i &lt; 5; i++ &#123;</span><br><span class="line">		fmt.Printf(&quot;%v[%v]: %v\n&quot;, name, i, arr[i])</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	// len 获取长度</span><br><span class="line">	fmt.Printf(&quot;len of %v: %v\n&quot;, name, len(arr))</span><br><span class="line"></span><br><span class="line">	// cap 也可以用来获取数组长度</span><br><span class="line">	fmt.Printf(&quot;cap of %v: %v\n&quot;, name, cap(arr))</span><br><span class="line"></span><br><span class="line">	fmt.Println()</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="切片"><a href="#切片" class="headerlink" title="切片"></a>切片</h2><h3 id="切片组成要素："><a href="#切片组成要素：" class="headerlink" title="切片组成要素："></a>切片组成要素：</h3><ul>
+<li>指针：指向底层数组</li>
+<li>长度：切片中元素的长度，不能大于容量</li>
+<li>容量：指针所指向的底层数组的总容量</li>
+</ul>
+<h3 id="常见初始化方式"><a href="#常见初始化方式" class="headerlink" title="常见初始化方式"></a>常见初始化方式</h3><ul>
+<li>使用 <code>make</code> 初始化</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">slice := make([]int, 5)     // 初始化长度和容量都为 5 的切片</span><br><span class="line">slice := make([]int, 5, 10) // 初始化长度为 5, 容量为 10 的切片</span><br></pre></td></tr></table></figure>
+<ul>
+<li>使用简短定义</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">slice := []int&#123;1, 2, 3, 4, 5&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>使用数组来初始化切片</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">arr := [5]int&#123;1, 2, 3, 4, 5&#125;</span><br><span class="line">slice := arr[0:3] // 左闭右开区间，最终切片为 [1,2,3]</span><br></pre></td></tr></table></figure>
+<ul>
+<li>使用切片来初始化切片</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sliceA := []int&#123;1, 2, 3, 4, 5&#125;</span><br><span class="line">sliceB := sliceA[0:3] // 左闭右开区间，sliceB 最终为 [1,2,3]</span><br></pre></td></tr></table></figure>
+<h3 id="长度和容量"><a href="#长度和容量" class="headerlink" title="长度和容量"></a>长度和容量</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">package main</span><br><span class="line"></span><br><span class="line">import (</span><br><span class="line">	&quot;fmt&quot;</span><br><span class="line">)</span><br><span class="line"></span><br><span class="line">func main() &#123;</span><br><span class="line">	slice := []int&#123;1, 2, 3, 4, 5&#125;</span><br><span class="line">	fmt.Println(&quot;len: &quot;, len(slice))</span><br><span class="line">	fmt.Println(&quot;cap: &quot;, cap(slice))</span><br><span class="line"></span><br><span class="line">	//改变切片长度</span><br><span class="line">	slice = append(slice, 6)</span><br><span class="line">	fmt.Println(&quot;after append operation: &quot;)</span><br><span class="line">	fmt.Println(&quot;len: &quot;, len(slice))</span><br><span class="line">	fmt.Println(&quot;cap: &quot;, cap(slice)) //注意，底层数组容量不够时，会重新分配数组空间，通常为两倍</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>以上代码，预期输出如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">len:  5</span><br><span class="line">cap:  5</span><br><span class="line">after append operation:</span><br><span class="line">len:  6</span><br><span class="line">cap:  12</span><br></pre></td></tr></table></figure>
+<h3 id="注意点"><a href="#注意点" class="headerlink" title="注意点"></a>注意点</h3><ul>
+<li>多个切片共享一个底层数组的情况</li>
+</ul>
+<blockquote>
+<p>对底层数组的修改，将影响上层多个切片的值</p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">package main</span><br><span class="line"></span><br><span class="line">import (</span><br><span class="line">	&quot;fmt&quot;</span><br><span class="line">)</span><br><span class="line"></span><br><span class="line">func main() &#123;</span><br><span class="line">	slice := []int&#123;1, 2, 3, 4, 5&#125;</span><br><span class="line">	newSlice := slice[0:3]</span><br><span class="line">	fmt.Println(&quot;before modifying underlying array:&quot;)</span><br><span class="line">	fmt.Println(&quot;slice: &quot;, slice)</span><br><span class="line">	fmt.Println(&quot;newSlice: &quot;, newSlice)</span><br><span class="line">	fmt.Println()</span><br><span class="line"></span><br><span class="line">	newSlice[0] = 6</span><br><span class="line">	fmt.Println(&quot;after modifying underlying array:&quot;)</span><br><span class="line">	fmt.Println(&quot;slice: &quot;, slice)</span><br><span class="line">	fmt.Println(&quot;newSlice: &quot;, newSlice)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>以上代码预期输出如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">before modify underlying array:</span><br><span class="line">slice:  [1 2 3 4 5]</span><br><span class="line">newSlice:  [1 2 3]</span><br><span class="line"></span><br><span class="line">after modify underlying array:</span><br><span class="line">slice:  [6 2 3 4 5]</span><br><span class="line">newSlice:  [6 2 3]</span><br></pre></td></tr></table></figure>
+<ul>
+<li>使用 <code>copy</code> 方法可以避免共享同一个底层数组</li>
+</ul>
+<blockquote>
+<p>示例代码如下：</p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">package main</span><br><span class="line"></span><br><span class="line">import (</span><br><span class="line">	&quot;fmt&quot;</span><br><span class="line">)</span><br><span class="line"></span><br><span class="line">func main() &#123;</span><br><span class="line">	slice := []int&#123;1, 2, 3, 4, 5&#125;</span><br><span class="line">	newSlice := make([]int, len(slice))</span><br><span class="line">	copy(newSlice, slice)</span><br><span class="line">	fmt.Println(&quot;before modifying underlying array:&quot;)</span><br><span class="line">	fmt.Println(&quot;slice: &quot;, slice)</span><br><span class="line">	fmt.Println(&quot;newSlice: &quot;, newSlice)</span><br><span class="line">	fmt.Println()</span><br><span class="line"></span><br><span class="line">	newSlice[0] = 6</span><br><span class="line">	fmt.Println(&quot;after modifying underlying array:&quot;)</span><br><span class="line">	fmt.Println(&quot;slice: &quot;, slice)</span><br><span class="line">	fmt.Println(&quot;newSlice: &quot;, newSlice)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>以上代码预期输出如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">before modifying underlying array:</span><br><span class="line">slice:  [1 2 3 4 5]</span><br><span class="line">newSlice:  [1 2 3 4 5]</span><br><span class="line"></span><br><span class="line">after modifying underlying array:</span><br><span class="line">slice:  [1 2 3 4 5]</span><br><span class="line">newSlice:  [6 2 3 4 5]</span><br></pre></td></tr></table></figure>
+<h2 id="Map"><a href="#Map" class="headerlink" title="Map"></a>Map</h2><p>在 Go 语言里面，map 一种无序的键值对, 它是数据结构 hash 表的一种实现方式，类似 Python 中的字典。</p>
+<h3 id="语法"><a href="#语法" class="headerlink" title="语法"></a>语法</h3><p>使用关键字 map 来声明形如：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">map[KeyType]ValueType</span><br></pre></td></tr></table></figure>
+<p>注意点：</p>
+<ul>
+<li>必须指定 key, value 的类型，插入的纪录类型必须匹配。</li>
+<li>key 具有唯一性，插入纪录的 key 不能重复。</li>
+<li>KeyType 可以为基础数据类型（例如 bool, 数字类型，字符串）, 不能为数组，切片，map，它的取值必须是能够使用 <code>==</code> 进行比较。</li>
+<li>ValueType 可以为任意类型。</li>
+<li>无序性。</li>
+<li>线程不安全, 一个 goroutine 在对 map 进行写的时候，另外的 goroutine 不能进行读和写操作，Go 1.6 版本以后会抛出 runtime 错误信息。</li>
+</ul>
+<h3 id="声明和初始化"><a href="#声明和初始化" class="headerlink" title="声明和初始化"></a>声明和初始化</h3><ul>
+<li>使用 var 声明</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">var cMap map[string]int  // 只定义, 此时 cMap 为 nil</span><br><span class="line">fmt.Println(cMap == nil)</span><br><span class="line">cMap[&quot;北京&quot;] = 1  // 报错，因为 cMap 为 nil</span><br></pre></td></tr></table></figure>
+<ul>
+<li>使用 <code>make</code></li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">cMap := make(map[string]int)</span><br><span class="line">cMap[&quot;北京&quot;] = 1</span><br><span class="line"></span><br><span class="line">// 指定初始容量</span><br><span class="line">cMap = make(map[string]int, 100)</span><br><span class="line">cMap[&quot;北京&quot;] = 1</span><br></pre></td></tr></table></figure>
+<p>说明：在使用 make 初始化 map 的时候，可以指定初始容量，这在能预估 map key 数量的情况下，减少动态分配的次数，从而提升性能。</p>
+<ul>
+<li>简短声明方式</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cMap := map[string]int&#123;&quot;北京&quot;: 1&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="map-基本操作"><a href="#map-基本操作" class="headerlink" title="map 基本操作"></a>map 基本操作</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">cMap := map[string]int&#123;&#125;</span><br><span class="line"></span><br><span class="line">cMap[&quot;北京&quot;] = 1 //写</span><br><span class="line"></span><br><span class="line">code := cMap[&quot;北京&quot;] // 读</span><br><span class="line">fmt.Println(code)</span><br><span class="line"></span><br><span class="line">code = cMap[&quot;广州&quot;]  // 读不存在 key</span><br><span class="line">fmt.Println(code)</span><br><span class="line"></span><br><span class="line">code, ok = cMap[&quot;广州&quot;]  // 检查 key 是否存在</span><br><span class="line">if ok &#123;</span><br><span class="line">  fmt.Println(code)  </span><br><span class="line">&#125; else &#123;</span><br><span class="line">  fmt.Println(&quot;key not exist&quot;)  </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">delete(cMap, &quot;北京&quot;) // 删除 key</span><br><span class="line">fmt.Println(&quot;北京&quot;)</span><br></pre></td></tr></table></figure>
+<h3 id="循环和无序性"><a href="#循环和无序性" class="headerlink" title="循环和无序性"></a>循环和无序性</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">cMap := map[string]int&#123;&quot;北京&quot;: 1, &quot;上海&quot;: 2, &quot;广州&quot;: 3, &quot;深圳&quot;: 4&#125;</span><br><span class="line"></span><br><span class="line">for city, code := range cMap &#123;</span><br><span class="line">  fmt.Printf(&quot;%s:%d&quot;, city, code)</span><br><span class="line">  fmt.Println()</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="线程不安全"><a href="#线程不安全" class="headerlink" title="线程不安全"></a>线程不安全</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">cMap := make(map[string]int)</span><br><span class="line"></span><br><span class="line">var wg sync.WaitGroup</span><br><span class="line">wg.Add(2)</span><br><span class="line"></span><br><span class="line">go func() &#123;</span><br><span class="line">	cMap[&quot;北京&quot;] = 1</span><br><span class="line">	wg.Done()</span><br><span class="line">&#125;()</span><br><span class="line"></span><br><span class="line">go func() &#123;</span><br><span class="line">	cMap[&quot;上海&quot;] = 2</span><br><span class="line">	wg.Done()</span><br><span class="line">&#125;()</span><br><span class="line"></span><br><span class="line">wg.Wait()</span><br></pre></td></tr></table></figure>
+<p>在 Go 1.6 之后的版本，多次运行此段代码，你将遇到这样的错误信息：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">fatal error: concurrent map writes</span><br><span class="line"></span><br><span class="line">goroutine x [running]:</span><br><span class="line">runtime.throw(0x10c64b6, 0x15)</span><br><span class="line">.....</span><br></pre></td></tr></table></figure>
+<p>解决之道：</p>
+<ul>
+<li>对读写操作加锁</li>
+<li>使用 security map, 例如 <code>sync.map</code></li>
+</ul>
+<h3 id="map-嵌套"><a href="#map-嵌套" class="headerlink" title="map 嵌套"></a>map 嵌套</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">provinces := make(map[string]map[string]int)</span><br><span class="line"></span><br><span class="line">provinces[&quot;贵阳&quot;] = map[string]int&#123;</span><br><span class="line">  &quot;南明区&quot;: 1,</span><br><span class="line">  &quot;花溪区&quot;: 2,</span><br><span class="line">  &quot;云岩区&quot;: 3,</span><br><span class="line">  &quot;乌当区&quot;: 4,</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">fmt.Println(provinces[&quot;北京&quot;])</span><br></pre></td></tr></table></figure>
+<h2 id="结构体"><a href="#结构体" class="headerlink" title="结构体"></a>结构体</h2><p>数组、切片和 Map 可以用来表示同一种数据类型的集合，但是当我们要表示不同数据类型的集合时就需要用到结构体。</p>
+<blockquote>
+<p>结构体是由零个或多个任意类型的值聚合成的实体</p>
+</blockquote>
+<p>关键字 <code>type</code> 和 <code>struct</code> 用来定义结构体：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">type StructName struct&#123;</span><br><span class="line">    FieldName type</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="简单示例：定义一个学生结构体"><a href="#简单示例：定义一个学生结构体" class="headerlink" title="简单示例：定义一个学生结构体"></a>简单示例：定义一个学生结构体</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">package main</span><br><span class="line"></span><br><span class="line">import &quot;fmt&quot;</span><br><span class="line"></span><br><span class="line">type Student struct &#123;</span><br><span class="line">	Age     int</span><br><span class="line">	Name    string</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">func main() &#123;</span><br><span class="line">	stu := Student&#123;</span><br><span class="line">		Age:     18,</span><br><span class="line">		Name:    &quot;name&quot;,</span><br><span class="line">	&#125;</span><br><span class="line">	fmt.Println(stu)</span><br><span class="line"></span><br><span class="line">	// 在赋值的时候，字段名可以忽略</span><br><span class="line">	fmt.Println(Student&#123;20, &quot;new name&quot;&#125;)</span><br><span class="line"></span><br><span class="line">	return</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>通常结构体中一个字段占一行，但是类型相同的字段，也可以放在同一行，例如：</p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">type Student struct&#123;</span><br><span class="line">    Age           int</span><br><span class="line">    Name, Address string</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>一个结构体中的字段名是唯一的，例如一下代码，出现了两个 <code>Name</code> 字段，是错误的：</p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">type Student struct&#123;</span><br><span class="line">    Name string</span><br><span class="line">    Name string</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>结构体中的字段如果是小写字母开头，那么其他 package 就无法直接使用该字段，例如：</p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">// 在包 pk1 中定义 Student 结构体</span><br><span class="line">package pk1</span><br><span class="line">type Student struct&#123;</span><br><span class="line">    Age  int</span><br><span class="line">    name string</span><br><span class="line">&#125;</span><br><span class="line">// 在另外一个包 pk2 中调用 Student 结构体</span><br><span class="line">package pk2</span><br><span class="line"></span><br><span class="line">func main()&#123;</span><br><span class="line">    stu := Student&#123;&#125;</span><br><span class="line">    stu.Age = 18        //正确</span><br><span class="line">    stu.name = &quot;name&quot;  // 错误，因为`name` 字段为小写字母开头，不对外暴露</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="结构体中可以内嵌结构体"><a href="#结构体中可以内嵌结构体" class="headerlink" title="结构体中可以内嵌结构体"></a>结构体中可以内嵌结构体</h3><blockquote>
+<p>但是需要注意的是：如果嵌入的结构体是本身，那么只能用指针。请看以下例子。</p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">package main</span><br><span class="line"></span><br><span class="line">import &quot;fmt&quot;</span><br><span class="line"></span><br><span class="line">type Tree struct &#123;</span><br><span class="line">	value       int</span><br><span class="line">	left, right *Tree</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">func main() &#123;</span><br><span class="line">	tree := Tree&#123;</span><br><span class="line">		value: 1,</span><br><span class="line">		left: &amp;Tree&#123;</span><br><span class="line">			value: 1,</span><br><span class="line">			left:  nil,</span><br><span class="line">			right: nil,</span><br><span class="line">		&#125;,</span><br><span class="line">		right: &amp;Tree&#123;</span><br><span class="line">			value: 2,</span><br><span class="line">			left:  nil,</span><br><span class="line">			right: nil,</span><br><span class="line">		&#125;,</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	fmt.Printf(&quot;&gt;&gt;&gt; %#v\n&quot;, tree)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="结构体是可以比较的"><a href="#结构体是可以比较的" class="headerlink" title="结构体是可以比较的"></a>结构体是可以比较的</h3><blockquote>
+<p>前提是结构体中的字段类型是可以比较的</p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">package main</span><br><span class="line"></span><br><span class="line">import &quot;fmt&quot;</span><br><span class="line"></span><br><span class="line">type Tree struct &#123;</span><br><span class="line">	value       int</span><br><span class="line">	left, right *Tree</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">func main() &#123;</span><br><span class="line">	tree1 := Tree&#123;</span><br><span class="line">		value: 2,</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	tree2 := Tree&#123;</span><br><span class="line">		value: 1,</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	fmt.Printf(&quot;&gt;&gt;&gt; %#v\n&quot;, tree1 == tree2)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="结构体内嵌匿名成员"><a href="#结构体内嵌匿名成员" class="headerlink" title="结构体内嵌匿名成员"></a>结构体内嵌匿名成员</h3><blockquote>
+<p>声明一个成员对应的数据类型而不指名成员的名字；这类成员就叫匿名成员</p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">package main</span><br><span class="line"></span><br><span class="line">import &quot;fmt&quot;</span><br><span class="line"></span><br><span class="line">type Person struct &#123;</span><br><span class="line">	Age  int</span><br><span class="line">    Name string</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">type Student struct &#123;</span><br><span class="line">	Person</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">func main() &#123;</span><br><span class="line">	per := Person&#123;</span><br><span class="line">		Age:  18,</span><br><span class="line">		Name: &quot;name&quot;,</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	stu := Student&#123;Person: per&#125;</span><br><span class="line"></span><br><span class="line">	fmt.Println(&quot;stu.Age: &quot;, stu.Age)</span><br><span class="line">	fmt.Println(&quot;stu.Name: &quot;, stu.Name)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</article><div class="post-copyright"><div class="post-copyright__title"><span class="post-copyright-info"><h>初识go语言day1</h></span></div><div class="post-copyright__type"><span class="post-copyright-info"><a href="https://www.dreamyou.site/post/6963e8dc.html">https://www.dreamyou.site/post/6963e8dc.html</a></span></div><div class="post-copyright-m"><div class="post-copyright-m-info"><div class="post-copyright-a" style="display: inline-block;width: 120px"><h>作者</h><div class="post-copyright-cc-info"><h>luoyunchen</h></div></div><div class="post-copyright-c" style="display: inline-block;width: 120px"><h>发布于</h><div class="post-copyright-cc-info"><h>2023-01-17</h></div></div><div class="post-copyright-u" style="display: inline-block;width: 120px"><h>更新于</h><div class="post-copyright-cc-info"><h>2023-01-17</h></div></div><div class="post-copyright-c" style="display: inline-block;width: 120px"><h>许可协议</h><div class="post-copyright-cc-info"><a class="icon" rel="noopener" target="_blank" title="Creative Commons" href="https://creativecommons.org/"><i class="fab fa-creative-commons"></i></a><a rel="noopener" target="_blank" title="CC BY 4.0" href="https://creativecommons.org/licenses/by/4.0/deed.zh">CC BY 4.0</a></div></div></div></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/go%E8%AF%AD%E8%A8%80/">go语言</a></div><div class="post_share"><div class="social-share" data-image="https://s2.loli.net/2023/02/08/7D1z5APxObTu8Ro.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/post/f06ab966.html"><img class="prev-cover" src="https://s2.loli.net/2023/02/08/7D1z5APxObTu8Ro.png" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">初识go语言day2</div></div></a></div><div class="next-post pull-right"><a href="/post/2b4f11ab.html"><img class="next-cover" src="https://s2.loli.net/2023/01/13/JLUdnSK9DgYZPRt.png" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">Go与Goland的安装和配置(macOS)</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><div><a href="/post/2b4f11ab.html" title="Go与Goland的安装和配置(macOS)"><img class="cover" src="https://s2.loli.net/2023/01/13/JLUdnSK9DgYZPRt.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-01-13</div><div class="title">Go与Goland的安装和配置(macOS)</div></div></a></div><div><a href="/post/f06ab966.html" title="初识go语言day2"><img class="cover" src="https://s2.loli.net/2023/02/08/7D1z5APxObTu8Ro.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-01-17</div><div class="title">初识go语言day2</div></div></a></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/assets/head.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">luoyunchen</div><div class="author-info__description">放弃不难，但坚持一定很酷</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">7</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">8</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">4</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://space.bilibili.com/43371425?spm_id_from=333.337.0.0"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">博客还在建设中，暂时记录一些博主的学习收获～</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%95%B0%E7%BB%84"><span class="toc-number">1.</span> <span class="toc-text">数组</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%A4%BA%E4%BE%8B"><span class="toc-number">1.1.</span> <span class="toc-text">示例</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%87%E7%89%87"><span class="toc-number">2.</span> <span class="toc-text">切片</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%87%E7%89%87%E7%BB%84%E6%88%90%E8%A6%81%E7%B4%A0%EF%BC%9A"><span class="toc-number">2.1.</span> <span class="toc-text">切片组成要素：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B8%B8%E8%A7%81%E5%88%9D%E5%A7%8B%E5%8C%96%E6%96%B9%E5%BC%8F"><span class="toc-number">2.2.</span> <span class="toc-text">常见初始化方式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%95%BF%E5%BA%A6%E5%92%8C%E5%AE%B9%E9%87%8F"><span class="toc-number">2.3.</span> <span class="toc-text">长度和容量</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B3%A8%E6%84%8F%E7%82%B9"><span class="toc-number">2.4.</span> <span class="toc-text">注意点</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Map"><span class="toc-number">3.</span> <span class="toc-text">Map</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%AF%AD%E6%B3%95"><span class="toc-number">3.1.</span> <span class="toc-text">语法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%A3%B0%E6%98%8E%E5%92%8C%E5%88%9D%E5%A7%8B%E5%8C%96"><span class="toc-number">3.2.</span> <span class="toc-text">声明和初始化</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#map-%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C"><span class="toc-number">3.3.</span> <span class="toc-text">map 基本操作</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%BE%AA%E7%8E%AF%E5%92%8C%E6%97%A0%E5%BA%8F%E6%80%A7"><span class="toc-number">3.4.</span> <span class="toc-text">循环和无序性</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BA%BF%E7%A8%8B%E4%B8%8D%E5%AE%89%E5%85%A8"><span class="toc-number">3.5.</span> <span class="toc-text">线程不安全</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#map-%E5%B5%8C%E5%A5%97"><span class="toc-number">3.6.</span> <span class="toc-text">map 嵌套</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BB%93%E6%9E%84%E4%BD%93"><span class="toc-number">4.</span> <span class="toc-text">结构体</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AE%80%E5%8D%95%E7%A4%BA%E4%BE%8B%EF%BC%9A%E5%AE%9A%E4%B9%89%E4%B8%80%E4%B8%AA%E5%AD%A6%E7%94%9F%E7%BB%93%E6%9E%84%E4%BD%93"><span class="toc-number">4.1.</span> <span class="toc-text">简单示例：定义一个学生结构体</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BB%93%E6%9E%84%E4%BD%93%E4%B8%AD%E5%8F%AF%E4%BB%A5%E5%86%85%E5%B5%8C%E7%BB%93%E6%9E%84%E4%BD%93"><span class="toc-number">4.2.</span> <span class="toc-text">结构体中可以内嵌结构体</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BB%93%E6%9E%84%E4%BD%93%E6%98%AF%E5%8F%AF%E4%BB%A5%E6%AF%94%E8%BE%83%E7%9A%84"><span class="toc-number">4.3.</span> <span class="toc-text">结构体是可以比较的</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BB%93%E6%9E%84%E4%BD%93%E5%86%85%E5%B5%8C%E5%8C%BF%E5%90%8D%E6%88%90%E5%91%98"><span class="toc-number">4.4.</span> <span class="toc-text">结构体内嵌匿名成员</span></a></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/post/24616bc5.html" title="Arduino IDE的安装及界面设置"><img src="https://s2.loli.net/2023/02/04/HU7uJ91K8WoBphd.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Arduino IDE的安装及界面设置"/></a><div class="content"><a class="title" href="/post/24616bc5.html" title="Arduino IDE的安装及界面设置">Arduino IDE的安装及界面设置</a><time datetime="2023-02-04T12:41:23.000Z" title="发表于 2023-02-04 20:41:23">2023-02-04</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/post/db772dca.html" title="Mac访达如何在当前文件夹打开vs code"><img src="https://s2.loli.net/2023/01/30/48sqLpvxzd9tUCG.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Mac访达如何在当前文件夹打开vs code"/></a><div class="content"><a class="title" href="/post/db772dca.html" title="Mac访达如何在当前文件夹打开vs code">Mac访达如何在当前文件夹打开vs code</a><time datetime="2023-01-30T07:16:02.000Z" title="发表于 2023-01-30 15:16:02">2023-01-30</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/post/ca79c134.html" title="算法基础-单调栈与单调队列"><img src="https://s2.loli.net/2023/01/21/spltu7rIWNCbiMZ.webp" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="算法基础-单调栈与单调队列"/></a><div class="content"><a class="title" href="/post/ca79c134.html" title="算法基础-单调栈与单调队列">算法基础-单调栈与单调队列</a><time datetime="2023-01-21T05:40:46.000Z" title="发表于 2023-01-21 13:40:46">2023-01-21</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/post/f06ab966.html" title="初识go语言day2"><img src="https://s2.loli.net/2023/02/08/7D1z5APxObTu8Ro.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="初识go语言day2"/></a><div class="content"><a class="title" href="/post/f06ab966.html" title="初识go语言day2">初识go语言day2</a><time datetime="2023-01-17T14:37:08.000Z" title="发表于 2023-01-17 22:37:08">2023-01-17</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/post/6963e8dc.html" title="初识go语言day1"><img src="https://s2.loli.net/2023/02/08/7D1z5APxObTu8Ro.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="初识go语言day1"/></a><div class="content"><a class="title" href="/post/6963e8dc.html" title="初识go语言day1">初识go语言day1</a><time datetime="2023-01-17T14:30:30.000Z" title="发表于 2023-01-17 22:30:30">2023-01-17</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2022 - 2023 By luoyunchen</div><div class="footer_custom_text">美好的事物不要轻易惊扰</div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.min.js"></script><div class="js-pjax"><script>if (!window.MathJax) {
+  window.MathJax = {
+    tex: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"]],
+      tags: 'ams'
+    },
+    chtml: {
+      scale: 1.1
+    },
+    options: {
+      renderActions: {
+        findScript: [10, doc => {
+          for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+            const display = !!node.type.match(/; *mode=display/)
+            const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display)
+            const text = document.createTextNode('')
+            node.parentNode.replaceChild(text, node)
+            math.start = {node: text, delim: '', n: 0}
+            math.end = {node: text, delim: '', n: 0}
+            doc.math.push(math)
+          }
+        }, ''],
+        insertScript: [200, () => {
+          document.querySelectorAll('mjx-container').forEach(node => {
+            if (node.hasAttribute('display')) {
+              btf.wrap(node, 'div', { class: 'mathjax-overflow' })
+            } else {
+              btf.wrap(node, 'span', { class: 'mathjax-overflow' })
+            }
+          });
+        }, '', false]
+      }
+    }
+  }
+  
+  const script = document.createElement('script')
+  script.src = 'https://cdn.jsdelivr.net/npm/mathjax/es5/tex-mml-chtml.min.js'
+  script.id = 'MathJax-script'
+  script.async = true
+  document.head.appendChild(script)
+} else {
+  MathJax.startup.document.state(0)
+  MathJax.texReset()
+  MathJax.typeset()
+}</script></div><script defer src="/js/light.js"></script><div class="aplayer no-destroy" data-id="8054635883" data-server="netease" data-type="playlist" data-fixed="true" data-mini="true" data-listFolded="false" data-order="random" data-preload="none" data-autoplay="false" muted></div><script>var meting_api = 'https://api.injahow.cn/meting/?server=:server&type=:type&id=:id&auth=:auth&r=:r'; </script><script async data-pjax src="/js/custom.js"></script><script async data-pjax src="/js/waterfall/waterfall.js"></script><script id="click-show-text" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/click-show-text.min.js" data-mobile="false" data-text="Dream,YOU" data-fontsize="15px" data-random="false" async="async"></script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/metingjs/dist/Meting.min.js"></script><script src="https://cdn.jsdelivr.net/npm/pjax/pjax.min.js"></script><script>let pjaxSelectors = ["head > title","#config-diff","#body-wrap","#rightside-config-hide","#rightside-config-show",".js-pjax","#web_bg"]
+
+var pjax = new Pjax({
+  elements: 'a:not([target="_blank"])',
+  selectors: pjaxSelectors,
+  cacheBust: false,
+  analytics: false,
+  scrollRestoration: false
+})
+
+document.addEventListener('pjax:send', function () {
+
+  // removeEventListener scroll 
+  window.tocScrollFn && window.removeEventListener('scroll', window.tocScrollFn)
+  window.scrollCollect && window.removeEventListener('scroll', scrollCollect)
+
+  document.getElementById('rightside').style.cssText = "opacity: ''; transform: ''"
+  
+  if (window.aplayers) {
+    for (let i = 0; i < window.aplayers.length; i++) {
+      if (!window.aplayers[i].options.fixed) {
+        window.aplayers[i].destroy()
+      }
+    }
+  }
+
+  typeof typed === 'object' && typed.destroy()
+
+  //reset readmode
+  const $bodyClassList = document.body.classList
+  $bodyClassList.contains('read-mode') && $bodyClassList.remove('read-mode')
+
+  typeof disqusjs === 'object' && disqusjs.destroy()
+})
+
+document.addEventListener('pjax:complete', function () {
+  window.refreshFn()
+
+  document.querySelectorAll('script[data-pjax]').forEach(item => {
+    const newScript = document.createElement('script')
+    const content = item.text || item.textContent || item.innerHTML || ""
+    Array.from(item.attributes).forEach(attr => newScript.setAttribute(attr.name, attr.value))
+    newScript.appendChild(document.createTextNode(content))
+    item.parentNode.replaceChild(newScript, item)
+  })
+
+  GLOBAL_CONFIG.islazyload && window.lazyLoadInstance.update()
+
+  typeof chatBtnFn === 'function' && chatBtnFn()
+  typeof panguInit === 'function' && panguInit()
+
+  // google analytics
+  typeof gtag === 'function' && gtag('config', '', {'page_path': window.location.pathname});
+
+  // baidu analytics
+  typeof _hmt === 'object' && _hmt.push(['_trackPageview',window.location.pathname]);
+
+  typeof loadMeting === 'function' && document.getElementsByClassName('aplayer').length && loadMeting()
+
+  // prismjs
+  typeof Prism === 'object' && Prism.highlightAll()
+})
+
+document.addEventListener('pjax:error', (e) => {
+  if (e.request.status === 404) {
+    pjax.loadUrl('/404.html')
+  }
+})</script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div><!-- hexo injector body_end start --> <script data-pjax>if(document.getElementById('recent-posts') && (location.pathname ==='/'|| '/' ==='all')){
+    var parent = document.getElementById('recent-posts');
+    var child = '<div class="recent-post-item" style="width:100%;height: auto"><div id="catalog_magnet"><div class="magnet_item"><a class="magnet_link" href="https://www.dreamyou.site/categories/数据结构与算法/"><div class="magnet_link_context" style=""><span style="font-weight:500;flex:1">📚 算法笔记 (1)</span><span style="padding:0px 4px;border-radius: 8px;"><i class="fas fa-arrow-circle-right"></i></span></div></a></div><div class="magnet_item"><a class="magnet_link" href="https://www.dreamyou.site/categories/后端基础/"><div class="magnet_link_context" style=""><span style="font-weight:500;flex:1">👩‍💻 后端笔记 (2)</span><span style="padding:0px 4px;border-radius: 8px;"><i class="fas fa-arrow-circle-right"></i></span></div></a></div><div class="magnet_item"><a class="magnet_link" href="https://www.dreamyou.site/categories/硬件开发/"><div class="magnet_link_context" style=""><span style="font-weight:500;flex:1">💡 硬件开发之旅 (1)</span><span style="padding:0px 4px;border-radius: 8px;"><i class="fas fa-arrow-circle-right"></i></span></div></a></div><div class="magnet_item" style="visibility: hidden"></div><a class="magnet_link_more"  href="https://www.dreamyou.site/categories" style="flex:1;text-align: center;margin-bottom: 10px;">查看更多...</a></div></div>';
+    console.log('已挂载magnet')
+    parent.insertAdjacentHTML("afterbegin",child)}
+     </script><style>#catalog_magnet{flex-wrap: wrap;display: flex;width:100%;justify-content:space-between;padding: 10px 10px 0 10px;align-content: flex-start;}.magnet_item{flex-basis: calc(50% - 5px);background: #f2f2f2;margin-bottom: 10px;border-radius: 8px;transition: all 0.2s ease-in-out;}.magnet_item:hover{background: #b30070}.magnet_link_more{color:#555}.magnet_link{color:black}.magnet_link:hover{color:white}@media screen and (max-width: 600px) {.magnet_item {flex-basis: 100%;}}.magnet_link_context{display:flex;padding: 10px;font-size:16px;transition: all 0.2s ease-in-out;}.magnet_link_context:hover{padding: 10px 20px;}</style>
+    <style></style><script async src="//at.alicdn.com/t/font_2032782_8d5kxvn09md.js"></script><!-- hexo injector body_end end --><script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/koharu.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":false},"log":false});</script></body></html>
