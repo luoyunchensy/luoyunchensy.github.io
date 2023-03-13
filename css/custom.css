@@ -1,0 +1,351 @@
+/* 页脚与头图透明 */
+#footer {
+    background: transparent !important;
+  }
+  #page-header {
+    background: transparent !important;
+  }
+  
+  /* 白天模式遮罩透明 */
+  #footer::before {
+    background: transparent !important;
+  }
+  #page-header::before {
+    background: transparent !important;
+  }
+  
+  /* 夜间模式遮罩透明 */
+  [data-theme="dark"] #footer::before {
+    background: transparent !important;
+  }
+  [data-theme="dark"] #page-header::before {
+    background: transparent !important;
+  }
+
+/* 夜间模式菜单栏发光字 */
+[data-theme="dark"] #nav .site-page,
+[data-theme="dark"] #nav .menus_items .menus_item .menus_item_child li a {
+  text-shadow: 0 0 2px var(--theme-color) !important;
+}
+
+/* 手机端适配 */
+[data-theme="dark"] #sidebar #sidebar-menus .menus_items .site-page {
+  text-shadow: 0 0 2px var(--theme-color) !important;
+}
+
+/* 小冰分类分类磁铁黑夜模式适配 */
+/* 一般状态 */
+[data-theme="dark"] .magnet_link_context {
+  background: #1e1e1e;
+  color: antiquewhite;
+}
+/* 鼠标悬浮状态 */
+[data-theme="dark"] .magnet_link_context:hover {
+  background: #3ecdf1;
+  color: #f2f2f2;
+}
+
+/*aplayer调整*/
+.aplayer.aplayer-fixed.aplayer-narrow .aplayer-body {
+  left: -66px !important;
+  /* 默认情况下缩进左侧66px，只留一点箭头部分 */
+}
+
+.aplayer.aplayer-fixed.aplayer-narrow .aplayer-body:hover {
+  left: 0 !important;
+  /* 鼠标悬停是左侧缩进归零，完全显示按钮 */
+}
+
+
+/*页面样式调节*/
+:root {
+  --trans-light: rgba(255, 255, 255, 0.88);
+  --trans-dark: rgba(25, 25, 25, 0.88);
+  --border-style: 1px solid rgb(169, 169, 169);
+  --backdrop-filter: blur(5px) saturate(150%);
+}
+
+/* 首页文章卡片 */
+#recent-posts > .recent-post-item {
+  background: var(--trans-light);
+  backdrop-filter: var(--backdrop-filter);
+  border-radius: 25px;
+  border: var(--border-style);
+}
+
+/* 首页侧栏卡片 */
+#aside-content .card-widget {
+  background: var(--trans-light);
+  backdrop-filter: var(--backdrop-filter);
+  border-radius: 18px;
+  border: var(--border-style);
+}
+
+/* 文章页、归档页、普通页面 */
+div#post,
+div#page,
+div#archive {
+  background: var(--trans-light);
+  backdrop-filter: var(--backdrop-filter);
+  border: var(--border-style);
+  border-radius: 20px;
+}
+
+/* 导航栏 */
+#page-header.nav-fixed #nav {
+  background: rgba(255, 255, 255, 0.75);
+  backdrop-filter: var(--backdrop-filter);
+}
+
+[data-theme="dark"] #page-header.nav-fixed #nav {
+  background: rgba(0, 0, 0, 0.7) !important;
+}
+
+/* 夜间模式遮罩 */
+[data-theme="dark"] #recent-posts > .recent-post-item,
+[data-theme="dark"] #aside-content .card-widget,
+[data-theme="dark"] div#post,
+[data-theme="dark"] div#archive,
+[data-theme="dark"] div#page {
+  background: var(--trans-dark);
+}
+
+
+/* 夜间模式页脚页头遮罩透明 */
+[data-theme="dark"] #footer::before {
+  background: transparent !important;
+}
+[data-theme="dark"] #page-header::before {
+  background: transparent !important;
+}
+
+/* 阅读模式 */
+.read-mode #aside-content .card-widget {
+  background: rgba(158, 204, 171, 0.5) !important;
+}
+.read-mode div#post {
+  background: rgba(158, 204, 171, 0.5) !important;
+}
+
+/* 夜间模式下的阅读模式 */
+[data-theme="dark"] .read-mode #aside-content .card-widget {
+  background: rgba(25, 25, 25, 0.9) !important;
+  color: #ffffff;
+}
+[data-theme="dark"] .read-mode div#post {
+  background: rgba(25, 25, 25, 0.9) !important;
+  color: #ffffff;
+}
+
+/*毛玻璃*/
+/*所有页面实现毛玻璃特效*/
+/*#aside-content{
+  background: rgba(255,255,255,0);
+}
+
+#aside-content > .card-widget:first-child {
+  background: rgba(255,255,255,0.5);
+  backdrop-filter: blur(10px);
+}
+
+#aside-content .card-widget {
+  background: rgba(255,255,255,0.5);
+  backdrop-filter: blur(10px);
+}
+
+.layout > div:first-child:not(.recent-posts) {
+  background: rgba(255,255,255,0.5);
+  backdrop-filter: blur(10px);
+}
+
+#recent-posts > .recent-post-item {
+  background: rgba(255,255,255,0.5);
+  backdrop-filter: blur(10px);
+}
+
+/*手机端毛玻璃优化*/
+/* #sidebar #sidebar-menus.open {
+  background: rgba(255,255,255,0.5);
+  backdrop-filter: blur(10px);
+}
+
+#sidebar #menu-mask {
+  background: rgba(255,255,255,0);
+} */ 
+
+
+/*宽屏适配*/
+.layout{
+  max-width:1400px;
+}
+.aside-content{
+  max-width:312px;
+  min-width:300px;
+}
+.recent-posts{
+width:auto!important;
+}
+@media screen and (max-width: 900px){
+  .aside-content{
+      max-width:none!important;
+  }
+}
+/*分页适配，分页隐藏个人页*/
+#archive,#page,#category,#tag,#about{
+  width:100%;
+}
+.page:not(.page.home) .aside-content{
+  display: none;
+}
+
+
+/* 文章目录 */
+#aside-content #card-toc .toc-content .toc-link.active {
+  line-height: 1.2;
+  border-radius: 12px;
+  border-left-color: var(--heo-hovertext);
+  background-color: var(--heo-card-bg);
+  color: var(--heo-lighttext);
+  font-weight: bold;
+  font-size: 20px;
+}
+
+[data-theme=dark].toc .toc-item.active .toc-link .toc-text {
+  color: var(--heo-white);
+}
+
+#aside-content #card-toc .toc-content .toc-item.active .toc-link {
+  opacity: 1;
+  border-radius: 8px;
+}
+
+#aside-content #card-toc .toc-content .toc-link {
+  line-height: 1.2;
+  padding: 8px;
+  border-left: 0px solid transparent;
+  border-radius: 12px;
+  color: var(--heo-secondtext);
+  cursor: default;
+}
+
+#aside-content #card-toc .toc-content .toc-link:not(.active) span {
+  opacity: 0.6;
+  cursor: pointer;
+  filter: blur(1px);
+  transition: 0.3s;
+}
+
+#aside-content #card-toc:hover .toc-content .toc-link:not(.active) span {
+  filter: blur(0px);
+  opacity: 1;
+}
+
+#aside-content #card-toc .toc-content .toc-link:not(.active) span:hover {
+  color: var(--heo-lighttext);
+}
+
+/* 目录卡片边距 */
+#card-toc {
+  padding: 0.5rem 0.5rem !important;
+}
+
+
+/* aplayer深色模式 */
+/*修改插件主体在深色模式下的样式*/
+[data-theme="dark"]
+.aplayer.aplayer-fixed {
+    background: rgba(0, 0, 0, 0.6)!important;
+    color: #e1e1e1;
+}
+
+/*修改深色模式下鼠标悬停在列表时的样式*/
+[data-theme="dark"]
+.aplayer-list li:hover {
+    background: rgba(0, 0, 0, 0.5) !important;
+
+}
+
+/*修改歌曲列表在深色模式下的样式*/
+[data-theme="dark"]
+.aplayer-list {
+    background: rgba(12, 12, 12, 0) !important;
+    border: 1px solid #0d0d0d!important;
+}
+
+/*修改深色模式下列表当前选中的歌曲样式*/
+[data-theme="dark"]
+.aplayer-list-light{
+    background: rgba(0,0,0,0.5)!important;
+}
+
+/*深色模式下给歌曲封面增加遮罩*/
+[data-theme="dark"]
+.aplayer-pic {
+    -webkit-filter: brightness(.7)!important;
+    filter: brightness(.7)!important;
+}
+
+/*about背景透明*/
+.transparentpage{
+  background:transparent!important;
+}
+
+
+
+
+.pace {
+	-webkit-pointer-events: none;
+	pointer-events: none;
+
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	user-select: none;
+}
+
+.pace.pace-inactive .pace-progress {
+	display: none;
+}
+
+.pace .pace-progress {
+	position: fixed;
+	z-index: 2000;
+	top: 0;
+	right: 0;
+	height: 5rem;
+	width: 5rem;
+
+	-webkit-transform: translate3d(0, 0, 0) !important;
+	-ms-transform: translate3d(0, 0, 0) !important;
+	transform: translate3d(0, 0, 0) !important;
+}
+
+.pace .pace-progress:after {
+	display: block;
+	position: absolute;
+	top: 0;
+	right: .5rem;
+	content: attr(data-progress-text);
+	font-family: "Helvetica Neue", sans-serif;
+	font-weight: 100;
+	font-size: 5rem;
+	line-height: 1;
+	text-align: right;
+	color: rgba(68, 68, 68, 0.19999999999999996);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
